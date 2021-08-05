@@ -15,7 +15,9 @@ const readUser = async (req, res) => {
         const { id } = req.params;
         const user = await User.findOne({
             where: { id: id },
+            include:[{model:models.Promotion}]
         });
+        console.log("read data :" ,user)
         if (user) {
             return res.status(200).json({ user });
         }
